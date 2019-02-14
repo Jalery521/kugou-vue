@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app"
+       :class="showPlayer?'padding_bottom':''">
+    <TopBar></TopBar>
+    <router-view></router-view>
+    <MediaPlayer v-show="showPlayer"></MediaPlayer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TopBar from './components/TopBar.vue'
+import MediaPlayer from './components/MediaPlayer.vue'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    TopBar,
+    MediaPlayer
+  },
+  computed: {
+    showPlayer () {
+      return this.$store.state.playerShow
+    }
   }
 }
 </script>
 
 <style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import "./assets/css/comment.css";
+body {
+  padding-top: 0.56rem;
+}
+.padding_bottom {
+  padding-bottom: 0.8rem;
 }
 </style>

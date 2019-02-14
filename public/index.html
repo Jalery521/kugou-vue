@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>kugou</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title>kugoudemo</title>
   </head>
   <body>
+    <script>
+      var maxFontSize = 150,
+        nowWidth,
+        nowFontSize
+      setNowFontSize()
+      function setNowFontSize() {
+        // 默认最大根元素大小为150px
+        // 获取屏幕当前宽度
+        nowWidth = window.innerWidth || document.documentElement.offsetWidth || document.body.offsetWidth
+        // 计算当前字体大小
+        nowFontSize = (nowWidth / 375) * 100
+        // 判断当前字体的大小,不能超过200px
+        if (nowFontSize > maxFontSize) {
+          nowFontSize = maxFontSize
+        }
+        document.documentElement.style.fontSize = nowFontSize + 'px'
+      }
+      // 当触发resize事件的时候,修改根元素的大小
+      window.addEventListener('resize', setNowFontSize)
+    </script>
     <noscript>
-      <strong>We're sorry but kugou doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but kugou doesn't work properly without JavaScript enabled. Please enable it to continue.</strong
+      >
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <script src="https://cdn.bootcss.com/vue/2.5.22/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.2/vue-router.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.1.0/vuex.min.js"></script>
   </body>
 </html>
