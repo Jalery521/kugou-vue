@@ -9,24 +9,17 @@
   </head>
   <body>
     <script>
-      var maxFontSize = 150,
-        nowWidth,
-        nowFontSize
-      setNowFontSize()
-      function setNowFontSize() {
-        // 默认最大根元素大小为150px
-        // 获取屏幕当前宽度
-        nowWidth = window.innerWidth || document.documentElement.offsetWidth || document.body.offsetWidth
-        // 计算当前字体大小
+      var maxFontSize = 150
+      var d = document.documentElement
+      var nowWidth, nowFontSize
+      function changeRem() {
+        nowWidth = window.innerWidth || d.clientWidth || document.body.clientWidth
         nowFontSize = (nowWidth / 375) * 100
-        // 判断当前字体的大小,不能超过200px
-        if (nowFontSize > maxFontSize) {
-          nowFontSize = maxFontSize
-        }
-        document.documentElement.style.fontSize = nowFontSize + 'px'
+        if (nowFontSize > maxFontSize) nowFontSize = maxFontSize
+        d.style.fontSize = nowFontSize + 'px'
       }
-      // 当触发resize事件的时候,修改根元素的大小
-      window.addEventListener('resize', setNowFontSize)
+      changeRem()
+      window.addEventListener('resize', changeRem)
     </script>
     <noscript>
       <strong
